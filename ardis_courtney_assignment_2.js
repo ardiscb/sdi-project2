@@ -5,25 +5,33 @@ Assignment: Deliverable 2
 Term: 1205
 */
 
-//This is not a part of this project. This function is used to abort the script for the procedure conditional.
+//This function is not a part of this project. 
+//It is used to abort the script.
 var javascriptAbort = function () {
    		throw new Error('This is NOT an error. This is used to abort the script.');
 };
 //END javascriptAbort
 
-//START
+/////////
+//START//
+/////////
 
 //Procedure
-var ticketStatus = function (ticket){
+/*
+//Notifies user of ticket creation or 
+non-creation and stops script because 
+none of the other functions would apply 
+if the ticket was not created.
+*/
+var notifyTicketStatus = function (ticket){
 	if (ticket === true) {
 		console.log("Your ticket has been created.");
 	} else {
-		console.log("Your ticket has not been created yet. Please call us so we can get your problem solved");
+		console.log("Your ticket has not been created yet. Please call us so we can get your problem solved.");
 		javascriptAbort();
-
-	}
+	};
 };
-//END ticketStatus
+//END notifyTicketStatus
 
 //Boolean function
 //Determines the team that has been assigned to a ticket 
@@ -33,30 +41,42 @@ var determineTeam = function (hardwareTeamIssue, programmingTeamIssue) {
 			team = console.log("A technician from the hardware team has been assigned to your ticket.");
 		} else {
 			team = console.log("A technician from the programming team has been assigned to your ticket.");
-		}
+		};
 		return team;
 	} else {
 		team = console.log("A technician from the help desk team has been assigned to your ticket.");
 		return team;
-	}
+	};
 };
 //END determineTeam
 
 //Number function
 //Remindes team every 15 minutes to do call backs within hour of voicemail
-//Fixed infinite loop, still nothing displays
+//Fixed infinite loop with break statement, but logic incorrect
 var callBackReminder = function (minutesPassed) {
 	var minutesLeft = 60;
 	var minutesPassed = 0;
-	while(minutesPassed < 60 && minutesPassed > 0) {
+	while(minutesPassed < 60) {
+		//Decrease by 15 minutes
+		//Broken
+		var minutesPassed = Math.round(minutesLeft - 15);
 		console.log("Your team has " + minutesLeft + " minutes to do call backs.");
-		minutesPassed = minutesLeft - 15;
+		if (minutesPassed <= 0) {
+			break;
+		} else {
+			break;
+		};
 	};
 	return minutesPassed;
 };
 //END callBackReminder
 
 //String function
+/*
+//Notifies user of who owns their 
+ticket and will be their first point 
+of contact regarding the specific issue.
+*/
 var nameTechnician = function(fname, lname) {
 	//local variables
 	var name = fname + " " + lname;
@@ -67,12 +87,16 @@ var nameTechnician = function(fname, lname) {
 //END nameTechnician
 
 //Array function
-var doArray = function(number, array) {
+//Shows three examples of information the user would get in their email about a ticket.
+var doArray = function(ticketNumber, array) {
 	//local variables
-	for (i = 0; i > 10; i++) {
-		//Math
-		console.log("");
-	}
+	var ticketNumber;
+	array = ["Password reset", "Monitor is blank", "Need PIN"];
+	for (i = 0; i < array.length; i++) {
+		var number = ticketNumber++;
+		console.log("Ticket Number: " + number);
+		console.log("Item Title: " + array[i]);
+	};
 	return array;
 };
 //END doArray
@@ -80,20 +104,17 @@ var doArray = function(number, array) {
 //Outputs
 
 //Procedure call
-ticketStatus(true);
-
+notifyTicketStatus(true);
 //Boolean function call
 determineTeam(false, true);
-
-console.log("All technicans must do call backs within an hour of the initial call.")
-
+console.log("All technicians must do call backs within an hour of the initial call.")
 //Number function call
 callBackReminder(20);
-
 //String function call
 nameTechnician("Courtney", "Ardis")
-
 //Array function call
-//doArray(5, array);
+doArray(9, 0);
 
-//FINISH
+//////////
+//FINISH//
+//////////
