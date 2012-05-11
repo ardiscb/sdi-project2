@@ -16,6 +16,11 @@ var javascriptAbort = function () {
 //START//
 /////////
 
+//Variables
+var string = "";
+var number = "";
+var array = "";
+
 //Procedure
 /*
 //Notifies user of ticket creation or 
@@ -52,7 +57,7 @@ var determineTeam = function (hardwareTeamIssue, programmingTeamIssue) {
 
 //Number function
 //Remindes team every 15 minutes to do call backs within hour of voicemail
-//Fixed infinite loop with break statement, but logic incorrect
+//Stop infinite loop with break statement so function would partly work
 var callBackReminder = function (minutesPassed) {
 	var minutesLeft = 60;
 	var minutesPassed = 0;
